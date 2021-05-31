@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# <h1 align="center"> <b>GUI based tool for evaluating Reliability of Distribution System</b></h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Abstract**
 
-## Available Scripts
+<h4 align="justify">Over the past few decades distribution systems have received considerably less of the attention since it is relatively cheap and outages have a very localized effect. On the other hand, analysis of the customer failure statistics of most utilities shows that the distribution system makes the greatest individual contribution to the unavailability of supply to a customer. These Statistics reinforce the need to be concerned with the reliability evaluation of distribution systems.</h4>
+<br/>
 
-In the project directory, you can run:
+## **Description**
 
-### `npm start`
+<h4 align="justify">To measure system performance, the electric utility industry has developed several measures of reliability. The aim of the project is to facilitate the quantitative analysis of the reliability of large distribution systems by calculating the various indices of reliability. The implementation is to be done using a <b>GUI tool which enables us to calculate the different indices for a sufficiently large amount of data.</b></h4>
+<br/>
+
+## **About the Project**
+
+<h3><i>Calculation of Reliability Indices:</i></h3>
+
+<h4 align="justify">Based on the study done regarding the different reliability indices, the following formulae are used for the measurement of indices.</h4>
+
+<h4 align="justify"><b>λi</b>=frequency of faults, <b>Ui</b>=average annual outage time, <b>Ni</b>=No. of customers of load point i</h4>
+
+<h4><b><i>SAIFI</b> = (Total no.of customer Interruption)/(Total no.of customer served)
+</i> = ((∑(<b>λiNi</b>))) / <b><i>INi</i></b></h4>
+
+<h4><b><i>CAIFI</b> = (Total no.of customer Interruption)/(Total no.of customer affected)
+</i>= ((∑(<b>λiNi</b>))) / <b><i>INi</i></b></h4>
+
+<h4><b><i>SAIDI</b> = (Sum of customer interruption durations)/(Total no.of customer)</i> = ((∑(<b>UiNi</b>))) / £<b><i>Ni</i></b></h4>
+<br/>
+
+## **Project Setup:**
+
+Clone the repository -
+
+```shell
+git clone https://github.com/Eric761/IOP.git
+```
+
+1: Checkout to master branch
+
+```shell
+cd IOP-GUI-Tool
+```
+
+2: Install the dependencies by running
+
+```shell
+npm install
+```
+
+3: Run the server
+
+```shell
+npm start
+```
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser !!
