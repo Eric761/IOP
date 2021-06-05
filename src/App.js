@@ -1,10 +1,14 @@
 import React from 'react';
+import Home from './components/Home';
+import {BrowserRouter,Switch,Route} from "react-router-dom";
 
 const App = () => {
   return (
-    <div style={{textAlign: "center"}}>
-      GUI Based Tool for evaluating reliability of distribution system
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" render={() => <Home />} />
+      </Switch>
+    </BrowserRouter>
   )
 }
 
