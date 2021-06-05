@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Nav = styled.nav`
-  background-color: #000;
+  background-color: #131313;
   height: 74px;
   display: flex;
   justify-content: center;
@@ -11,6 +11,7 @@ export const Nav = styled.nav`
   font-size: 1rem;
   top: 0;
   z-index: 10;
+  box-shadow: rgb(38 38 41 / 71%) 0px 5px 18px;
   @media screen and (max-width: 960px) {
     transition: 0.8s all ease;
   }
@@ -81,6 +82,6 @@ height: 100%;
 cursor: pointer;
 
 &:active{
-    border-bottom: 3px solid #01bf71;
+    border-bottom: 3px solid #fff;
 }
 `;
