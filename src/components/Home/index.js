@@ -32,7 +32,7 @@ const Home = () => {
               The electric utility industry has developed several measures of reliability to measure system performance. In order to facilitate the quantitative analysis of the reliability of large distribution systems, user needs to calculate the various indices of reliability !
               </Description>
               <ContentBtn>
-                <Link to="/join">Get Started</Link>
+                <Link to="/custom-input">Get Started</Link>
               </ContentBtn>
             </Content>
           </InfoCol>

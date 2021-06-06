@@ -73,15 +73,77 @@ export const NavItems = styled.li`
 `;
 
 export const NavLinks = styled(Link)`
-color: #fff;
+color: ${({disable}) => (disable ? "#8c8181" : "#fff")};
 display: flex;
 align-items: center;
 text-decoration: none;
 padding: 0 1rem;
 height: 100%;
 cursor: pointer;
+font-weight: 500;
 
 &:active{
     border-bottom: 3px solid #fff;
 }
+`;
+
+// DropDown
+
+export const Dropdown = styled.div`
+  height: ${(props) => props.height};
+  position: absolute;
+  top: 75px;
+  width: 220px;
+  transform: translateX(-36%);
+  background-color: #252222;
+  border: 1px solid #474a4d;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow: hidden;
+  transition: height 500ms ease;
+`;
+
+export const Menu = styled.div`
+  width: 100%;
+  h2{
+    color: #000000;
+  }
+`;
+export const MenuLink = styled(Link)`
+  text-decoration: none;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background 500ms;
+  padding: 0.5rem;
+  cursor: pointer;
+  .icon-color{
+    color: black;
+  }
+  .icon-left {
+    margin-right: 0.5rem;
+    &:hover {
+      filter: none;
+    }
+  }
+  .icon-right {
+    margin-left: auto;
+    margin-right: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &:hover {
+    background-color: #4f4f4f;
+    text-decoration: none;
+    h1,h2,.icon-color{color: white;}
+  }
+  .icon-menu-text {
+    font-size: large;
+    padding-top: 2px;
+    margin-left: 5px;
+    color: black;
+  }
 `;
