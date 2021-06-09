@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  // Remove height -> (Don't know why white color randomly appears at bottom) 
   padding-top: 80px;
+  background-color: #dfe4e0;
+  height: 100vh;
 `;
 
 export const InfoRow = styled.div`
@@ -10,7 +13,7 @@ export const InfoRow = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 15vh;
+  /* margin-bottom: 15vh; */
 `;
 
 export const InfoCol = styled.div`

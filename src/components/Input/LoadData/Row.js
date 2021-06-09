@@ -56,15 +56,6 @@ const Row = ({ row }) => {
   return (
     <>
       <TableRow className={classes.root}>
-        {/* <StyledTableCell align="center">
-          <IconButton
-            onClick={() => {
-              Delete(row.Bno);
-            }}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </StyledTableCell> */}
         <StyledTableCell align="center">
           {editable ? (
             <IconButton

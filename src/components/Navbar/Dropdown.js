@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaChevronCircleRight } from "react-icons/fa";
 import { Menu, Dropdown, MenuLink } from "./NavbarElements";
 
-const DropdownMenu = () => {
+const DropdownMenu = ({handleDropdown}) => {
   const [menuHeight, setMenuHeight] = useState(null);
   const dropdownRef = useRef(null);
 
@@ -12,7 +12,7 @@ const DropdownMenu = () => {
 
   function DropdownItem(props) {
     return (
-      <MenuLink to={props.url}>
+      <MenuLink to={props.url} onClick={handleDropdown}>
         <span className="icon-left">{props.leftIcon}</span>
         <h1 className="icon-menu-text">{props.children}</h1>
         <span className="icon-right">{props.rightIcon}</span>

@@ -87,6 +87,21 @@ font-weight: 500;
 }
 `;
 
+export const NavLinkInput = styled.div`
+color: ${({disable}) => (disable ? "#8c8181" : "#fff")};
+display: flex;
+align-items: center;
+text-decoration: none;
+padding: 0 1rem;
+height: 100%;
+cursor: pointer;
+font-weight: 500;
+
+&:active{
+    border-bottom: 3px solid #fff;
+}
+`;
+
 // DropDown
 
 export const Dropdown = styled.div`
@@ -144,6 +159,9 @@ export const MenuLink = styled(Link)`
     font-size: large;
     padding-top: 2px;
     margin-left: 5px;
-    color: black;
+    color: #7b7b7b;
+  }
+  .icon-color{
+    color: #7b7b7b;
   }
 `;

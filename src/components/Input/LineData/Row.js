@@ -9,7 +9,6 @@ import {
   MenuItem
 } from "@material-ui/core";
 //Material ui Icons
-import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from "@material-ui/icons/EditOutlined";
 import CheckIcon from '@material-ui/icons/Check';
 

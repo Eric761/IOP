@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import ParticlesBg from "particles-bg";
 import {
     Container,
@@ -11,18 +11,18 @@ import {
     ContentBtn,
     ImageWrapper,
     Img } from "./Home.elements";
-import Header from "../Header";
 // import bg1 from "../../images/power-distribution-system-3.jpg";
 import bg1 from "../../images/bg4.png";
 // import bg1 from "../../images/bg1.svg";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  return (
+    // useEffect(() => {
+    //   document.querySelector('#container').scrollTop = 0;
+    // },[])
+    return (
     <>
-      <Header />
-      <Container>
-        {/* <ParticlesBg color="#000000" num={175} type="cobweb" bg={true} />  */}
+      <Container id="container">
         <InfoRow>
           <InfoCol>
             <Content>

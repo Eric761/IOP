@@ -9,6 +9,7 @@ import {
   NavItems,
   NavLinks,
   NavMenu,
+  NavLinkInput,
 } from "./NavbarElements";
 import { withStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -49,8 +50,8 @@ const Navbar = ({ toggle }) => {
               <NavLinks to="/">Home</NavLinks>
             </NavItems>
             <NavItems>
-              <NavLinks onClick={handleDropdown}>Input</NavLinks>
-              {open && <DropdownMenu />}
+              <NavLinkInput onClick={handleDropdown}>Input</NavLinkInput>
+              {open && <DropdownMenu handleDropdown={handleDropdown} />}
             </NavItems>
             <NavItems>
               <NavLinks to="/">About</NavLinks>
