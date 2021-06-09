@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background-color: rgba(177,169,138,1);
+`; 
+
 export const ContentBtn = styled.div`
 /* max-width: 460px; */
 margin-top: 4vh;

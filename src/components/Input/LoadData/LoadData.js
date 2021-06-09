@@ -82,7 +82,7 @@ let data = [];
 const EXTENSIONS = ['xlsx', 'xls', 'csv'];
 let keys = ["bus","N","L"];
 
-const LoadData = ({isCustom}) => {
+const LoadData = ({isCustom,parentCallbackLoadData}) => {
   const classes = useStyles();
   const [busNumber, setBusNumber] = useState(1);
   const [consumerNumber, setConsumerNumber] = useState("");
@@ -147,6 +147,7 @@ const LoadData = ({isCustom}) => {
     };
     data.push(obj);
     console.log(data);
+    parentCallbackLoadData(data);
     setSheetData(data);
     setBusNumber(busNumber+1);
     setConsumerNumber("");
@@ -189,6 +190,7 @@ const LoadData = ({isCustom}) => {
       fileData.splice(0, 1);
       data=data.concat(convertToJson(fileData));
       console.log(data);
+      parentCallbackLoadData(data);
       setSheetData(data);
       setBusNumber(1+data.length);
     }

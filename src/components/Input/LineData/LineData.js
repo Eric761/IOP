@@ -94,7 +94,7 @@ const selectCB = [
 const EXTENSIONS = ['xlsx', 'xls', 'csv'];
 let keys = ["Bno","S","R","F","O","CB"];
 
-const LineData = ({isCustom}) => {
+const LineData = ({isCustom,parentCallbackLineData}) => {
   const classes = useStyles();
   const [branchNumber, setBranchNumber] = useState(1);
   const [sendingBus, setSendingBus] = useState("1");
@@ -165,6 +165,7 @@ const LineData = ({isCustom}) => {
     };
     data.push(obj);
     console.log(data);
+    parentCallbackLineData(data);
     setSheetData(data);
     setBranchNumber(branchNumber+1);
     setSendingBus("1");
@@ -209,6 +210,7 @@ const LineData = ({isCustom}) => {
       fileData.splice(0, 1);
       data=data.concat(convertToJson(fileData));
       console.log(data);
+      parentCallbackLineData(data);
       setSheetData(data);
       setBranchNumber(1+data.length);
       // console.log(fileData);
