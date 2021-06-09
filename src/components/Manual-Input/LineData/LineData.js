@@ -134,11 +134,11 @@ const LineData = () => {
     if(flag){
     setOpen(!open);
     let obj = {
-      Bno: branchNumber,
-      S: sendingBus,
-      R: recievingBus,
-      F: failureRate,
-      O: outageTime,
+      Bno: Number(branchNumber),
+      S: Number(sendingBus),
+      R: Number(recievingBus),
+      F: Number(failureRate),
+      O: Number(outageTime),
       CB: cb,
     };
     data.push(obj);
@@ -318,7 +318,7 @@ const LineData = () => {
       <Grid container direction="row" justify="center" alignItems="center">
         <TableContainer component={Paper} className={classes.root}>
           <Typography
-            style={{ margin: 10,display: "flex",alignItems:"center",justifyContent:"center",color:"black",fontFamily: "'Nunito', sans-serif" }}
+            style={{ margin: 10,display: "flex",alignItems:"center",justifyContent:"center",color:"black",fontFamily: "'Nunito', sans-serif",fontWeight: "900" }}
             variant="h4"
             color="primary"
             component="h2"

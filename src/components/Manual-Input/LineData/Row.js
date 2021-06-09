@@ -57,10 +57,10 @@ const Row = ({ row }) => {
 
   //Update data
   const update = () => {
-    row.S = sendingBus;
-    row.R = recievingBus;
-    row.F = failureRate;
-    row.O = outageTime;
+    row.S = Number(sendingBus);
+    row.R = Number(recievingBus);
+    row.F = Number(failureRate);
+    row.O = Number(outageTime);
     row.CB = cb;
     setEditable(!editable);
   };

@@ -49,7 +49,7 @@ const Navbar = ({ toggle }) => {
               <NavLinks to="/">Home</NavLinks>
             </NavItems>
             <NavItems>
-              <NavLinks to="/" onClick={handleDropdown}>Input</NavLinks>
+              <NavLinks onClick={handleDropdown}>Input</NavLinks>
               {open && <DropdownMenu />}
             </NavItems>
             <NavItems>

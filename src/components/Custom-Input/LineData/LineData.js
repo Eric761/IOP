@@ -25,8 +25,10 @@ import {
 } from "@material-ui/core";
 //Material ui Icons
 import AddIcon from '@material-ui/icons/Add';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Row from "./Row";
 import TablePaginationActions from "../Helper";
+import XLSX from "xlsx";
 
 //Function for Dialog
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -89,6 +91,8 @@ const selectCB = [
     label: 'Y',
   }
 ];
+const EXTENSIONS = ['xlsx', 'xls', 'csv'];
+let keys = ["Bno","S","R","F","O","CB"];
 
 const LineData = () => {
   const classes = useStyles();
@@ -101,13 +105,31 @@ const LineData = () => {
   const [open, setOpen] = useState(false);
   const [sheetData,setSheetData] = useState([]);
   const [inputError,setInputError] = useState(false);
+  
+  const getExention = (file) => {
+    const parts = file.name.split('.')
+    const extension = parts[parts.length - 1]
+    return EXTENSIONS.includes(extension) // return boolean
+  }
+
+  const convertToJson = (data) => {
+    const rows = []
+    data.forEach(row => {
+      let rowData = {}
+      row.forEach((element, index) => {
+        rowData[keys[index]] = element;
+      })
+      rows.push(rowData)
+    });
+    return rows;
+  }
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, sheetData.length - page * rowsPerPage);
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (newPage) => {
     setPage(newPage);
   };
 
@@ -134,11 +156,11 @@ const LineData = () => {
     if(flag){
     setOpen(!open);
     let obj = {
-      Bno: branchNumber,
-      S: sendingBus,
-      R: recievingBus,
-      F: failureRate,
-      O: outageTime,
+      Bno: Number(branchNumber),
+      S: Number(sendingBus),
+      R: Number(recievingBus),
+      F: Number(failureRate),
+      O: Number(outageTime),
       CB: cb,
     };
     data.push(obj);
@@ -160,6 +182,51 @@ const LineData = () => {
   const handleCloseDialog = () => {
     setOpen(false);
   };
+
+   // Importing Excel file
+   const handleFileSubmit = (e) => {
+    console.log(e.target.files);
+    if(e.target.files)
+    {
+      const file = e.target.files[0];
+      console.log(file);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+      // console.log(event);
+      //parse data
+      const bstr = event.target.result;
+      // console.log(bstr);
+      const workBook = XLSX.read(bstr, { type: "binary" });
+      //get first sheet
+      const workSheetName = workBook.SheetNames[0];
+      const workSheet = workBook.Sheets[workSheetName];
+      //convert to array
+      const fileData = XLSX.utils.sheet_to_json(workSheet,{header: 1});
+      console.log(fileData);
+      const headers = fileData[0];
+      console.log(headers);
+      //removing header
+      fileData.splice(0, 1);
+      data=data.concat(convertToJson(fileData));
+      console.log(data);
+      setSheetData(data);
+      setBranchNumber(1+data.length);
+      // console.log(fileData);
+    }
+
+    if (file) {
+      if (getExention(file)) {
+        reader.readAsBinaryString(file);
+      }
+      else {
+        alert("Invalid file input, Select Excel, CSV file");
+      }
+    } else {
+      setSheetData([]);
+    }
+    console.log(sheetData);
+  }
+}
 
   return (
     <div style={{marginTop: "5vh",display: "flex", flexDirection: "column",alignItems: "flex-end",justifyContent: "center"}}>
@@ -318,7 +385,7 @@ const LineData = () => {
       <Grid container direction="row" justify="center" alignItems="center">
         <TableContainer component={Paper} className={classes.root}>
           <Typography
-            style={{ margin: 10,display: "flex",alignItems:"center",justifyContent:"center",color:"black",fontFamily: "'Nunito', sans-serif" }}
+            style={{ margin: 10,display: "flex",alignItems:"center",justifyContent:"center",color:"black",fontFamily: "'Nunito', sans-serif",fontWeight: "900" }}
             variant="h4"
             color="primary"
             component="h2"
@@ -386,17 +453,31 @@ const LineData = () => {
           </Table>
         </TableContainer>
       </Grid>
+      <div>
+      <Button
+        variant="contained"
+        component="label"
+        color="primary"
+        className={classes.submit}
+        startIcon={<CloudUploadIcon />}
+        style={{fontSize: "medium",background: "#181919",margin: "16px 58px 16px" }}
+        onChange={handleFileSubmit}
+      >
+        Upload
+        <input type="file" hidden />
+      </Button>
       <Button
         variant="contained"
         color="primary"
         className={classes.submit}
         onClick={handleClickOpen}
         startIcon={<AddIcon />}
-        style={{fontSize: "medium",background: "#181919"}}
+        style={{fontSize: "medium",background: "#181919",margin: "16px 58px 16px" }}
         // Add Hover Effect
       >
         Add
       </Button>
+      </div>
     </div>
   );
 };

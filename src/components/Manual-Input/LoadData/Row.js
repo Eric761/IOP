@@ -41,8 +41,8 @@ const Row = ({ row }) => {
 
   //Update data
   const update = () => {
-    row.N = consumerNumber;
-    row.L = load;
+    row.N = Number(consumerNumber);
+    row.L = Number(load);
     setEditable(!editable);
   };
 
