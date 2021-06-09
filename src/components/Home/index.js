@@ -1,5 +1,5 @@
 import React from "react";
-import ParticlesBg from "particles-bg";
+// import ParticlesBg from "particles-bg";
 import {
     Container,
     InfoRow,
