@@ -27,7 +27,7 @@ a {
   white-space: nowrap;
   line-height: 17px;
   &:hover {
-    background-color: #2b3747;
+    background-color: #000000;
     color: white;
     text-decoration: none;
   }
