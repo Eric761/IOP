@@ -17,7 +17,7 @@ function NetworkDiagram({lineData}){
          link.push({from:send,to:receive})
         busData.push({key:row.S});
      })
-     
+     busData.push({key:bus.size});
      
 function initDiagram() {
     const $ = go.GraphObject.make;
