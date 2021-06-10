@@ -12,6 +12,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
+import NetworkDiagram from "../NetworkRepresentation/NetworkRepresentation";
 
 const useStyles = makeStyles({
   root: {
@@ -67,6 +68,7 @@ const Result = () => {
         <Title>
             RESULT
         </Title>
+        <NetworkDiagram lineData={lineData} />
         <Heading1>
             Customer Oriented Reliability Indices
         </Heading1>
