@@ -25,6 +25,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 padding: 12px;
+cursor: pointer;
 `;
 
 export const ContentBtn = styled.div`
