@@ -22,6 +22,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -30,6 +31,9 @@ import NodalAnalysis from "./NodalAnalysis/index";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
+=======
+import NetworkDiagram from "../NetworkRepresentation/NetworkRepresentation";
+>>>>>>> 10c74a9838c3b5df6c300f03c045c7091b39e7bc
 
 const useStyles = makeStyles({
   root: {
@@ -135,6 +139,7 @@ const Result = ({ handleSuggestion }) => {
             </Link>
           </ContentBtnLeft>
         </Title>
+<<<<<<< HEAD
         <Dialog
           fullScreen={fullScreen}
           open={open}
@@ -155,6 +160,13 @@ const Result = ({ handleSuggestion }) => {
         </Dialog>
         <Heading1>Customer Oriented Reliability Indices</Heading1>
         <StyledGrid1 container spacing={4}>
+=======
+        <NetworkDiagram lineData={lineData} />
+        <Heading1>
+            Customer Oriented Reliability Indices
+        </Heading1>
+        <Grid container spacing={4} className="grid-1">
+>>>>>>> 10c74a9838c3b5df6c300f03c045c7091b39e7bc
           {customerRows.map((item) => {
             return (
               <Grid item spacing={3} xs={12} sm={6} md={4}>
