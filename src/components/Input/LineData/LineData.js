@@ -107,6 +107,7 @@ const LineData = ({isCustom,parentCallbackLineData}) => {
   const [inputError,setInputError] = useState(false);
   useEffect(() => {
     data=[];
+    parentCallbackLineData(data);
   },[]);
   
   const getExention = (file) => {

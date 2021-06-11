@@ -11,7 +11,8 @@ const App = () => {
   const [isValid, setIsValid] = useState(false);
   const [suggestionPage, setSuggestionPage] = useState(false);
   const handleResult = () => {
-    setIsValid(!isValid);
+    setIsValid(true);
+    // setIsValid(!isValid);; -> If try to navigate from Analytics to Result to Input... Then, Onclicking calculate button, it will render homepage..
   };
   const handleSuggestion = () => {
     setSuggestionPage(true);

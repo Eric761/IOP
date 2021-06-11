@@ -93,6 +93,7 @@ const LoadData = ({isCustom,parentCallbackLoadData}) => {
 
   useEffect(() => {
     data=[];
+    parentCallbackLoadData(data);
   },[]);
 
   const getExention = (file) => {
