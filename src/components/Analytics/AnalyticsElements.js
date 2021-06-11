@@ -12,12 +12,10 @@ background-color: #d3d4da;
 
 export const Row = styled.div`
 display: flex;
-justify-content: ${({left}) => (left ? "flex-start" : "flex-end")};
+justify-content: center;
 align-items: center;
-/* position: relative;
-left: ${({left}) => (left ? "0" : "")};
-right: ${({left}) => (left ? "" : "0")}; */
-margin-bottom: 5vh;
+margin-top: ${({margin}) => (margin ? "2vh" : "0")};
+margin-bottom: 9vh;
 `;
 
 export const StyledPaper = styled(Paper)`
