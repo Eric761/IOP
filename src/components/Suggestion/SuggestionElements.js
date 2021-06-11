@@ -22,6 +22,7 @@ export const Row = styled.div`
 
 export const Title = styled.div`
   margin: 5vh auto;
+  margin-top: 6vh;
   text-align: center;
   font-weight: bolder;
   color: #000000;
@@ -31,7 +32,7 @@ export const Title = styled.div`
 
 export const StyledPaper = styled(Paper)`
   height: 70vh;
-  width: 40vw;
+  width: ${({left}) => (left ? "50vw" : "37vw")};
   display: flex;
   align-items: center;
   justify-content: center;

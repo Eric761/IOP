@@ -214,7 +214,7 @@ const Suggestion = () => {
         <Title>Changing Failure Rate</Title>
         {stateFr.map((obj) => {
         return (<Row>
-            <StyledPaper elevation={10} style={{ backgroundColor: "#1f1f1f",marginRight: "60px"}}>
+            <StyledPaper left={true} elevation={10} style={{ backgroundColor: "#1f1f1f",marginRight: "45px" }}>
                 <Bar
                     data={obj.state1}
                     options={{
@@ -233,7 +233,7 @@ const Suggestion = () => {
                     }}
                 />
             </StyledPaper>
-            <StyledPaper elevation={10} style={{ backgroundColor: "#1f1f1f" }}>
+            <StyledPaper left={false} elevation={10} style={{ backgroundColor: "#1f1f1f" }}>
                 <Bar
                     data={obj.state2}
                     options={{
@@ -257,7 +257,7 @@ const Suggestion = () => {
         <Title>Changing Outage Time</Title>
         {stateOt.map((obj) => {
         return(<Row>
-            <StyledPaper elevation={10} style={{ backgroundColor: "#1f1f1f",marginRight: "60px" }}>
+            <StyledPaper left={true} elevation={10} style={{ backgroundColor: "#1f1f1f",marginRight: "45px" }}>
                 <Bar
                     data={obj.state1}
                     options={{
@@ -276,7 +276,7 @@ const Suggestion = () => {
                     }}
                 />
             </StyledPaper>
-            <StyledPaper elevation={10} style={{ backgroundColor: "#1f1f1f" }}>
+            <StyledPaper left={false} elevation={10} style={{ backgroundColor: "#1f1f1f" }}>
                 <Bar
                     data={obj.state2}
                     options={{
@@ -300,7 +300,7 @@ const Suggestion = () => {
         <Title>Changing Circuit Breaker</Title>
         {stateCb.map((obj) => {
         return(<Row>
-            <StyledPaper elevation={10} style={{ backgroundColor: "#1f1f1f",marginRight: "60px" }}>
+            <StyledPaper left={true} elevation={10} style={{ backgroundColor: "#1f1f1f",marginRight: "45px" }}>
                 <Bar
                     data={obj.state1}
                     options={{
@@ -319,7 +319,7 @@ const Suggestion = () => {
                     }}
                 />
             </StyledPaper>
-            <StyledPaper elevation={10} style={{ backgroundColor: "#1f1f1f" }}>
+            <StyledPaper left={false} elevation={10} style={{ backgroundColor: "#1f1f1f" }}>
                 <Bar
                     data={obj.state2}
                     options={{
