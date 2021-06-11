@@ -14,7 +14,8 @@ const App = () => {
     setIsValid(!isValid);
   };
   const handleSuggestion = () => {
-    setSuggestionPage(!suggestionPage);
+    setSuggestionPage(true);
+    // setSuggestionPage(!suggestionPage); -> If try to navigate from Analytics to Result to Suggestion... It will render homepage..
   };
   return (
     <>
