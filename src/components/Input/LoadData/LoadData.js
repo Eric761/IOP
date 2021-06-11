@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 //Material ui style components
 import { makeStyles,withStyles } from "@material-ui/core/styles";
 //Material ui core components
@@ -90,6 +90,10 @@ const LoadData = ({isCustom,parentCallbackLoadData}) => {
   const [open, setOpen] = useState(false);
   const [sheetData,setSheetData] = useState([]);
   const [inputError,setInputError] = useState(false);
+
+  useEffect(() => {
+    data=[];
+  },[]);
 
   const getExention = (file) => {
     const parts = file.name.split('.')
