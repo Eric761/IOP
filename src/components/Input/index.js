@@ -7,7 +7,8 @@ import { Container, Tables, ContentBtn } from "./InputElements";
 
 let loadData = [];
 let lineData = [];
-const Input = ({ title, isCustom, handleResult }) => {
+
+const Input = ({ title, isCustom, handleResult,handleAnalytics }) => {
   const [flag, setFlag] = useState(false);
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -44,10 +45,12 @@ const Input = ({ title, isCustom, handleResult }) => {
           <LoadData
             isCustom={isCustom}
             parentCallbackLoadData={handleCallbackLoadData}
+            handleAnalytics={handleAnalytics}
           />
           <LineData
             isCustom={isCustom}
             parentCallbackLineData={handleCallbackLineData}
+            handleAnalytics={handleAnalytics}
           />
         </Tables>
         <ContentBtn>

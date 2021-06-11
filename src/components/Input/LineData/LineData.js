@@ -94,7 +94,7 @@ const selectCB = [
 const EXTENSIONS = ['xlsx', 'xls', 'csv'];
 let keys = ["Bno","S","R","F","O","CB"];
 
-const LineData = ({isCustom,parentCallbackLineData}) => {
+const LineData = ({isCustom,parentCallbackLineData,handleAnalytics}) => {
   const classes = useStyles();
   const [branchNumber, setBranchNumber] = useState(1);
   const [sendingBus, setSendingBus] = useState("1");
@@ -108,6 +108,7 @@ const LineData = ({isCustom,parentCallbackLineData}) => {
   useEffect(() => {
     data=[];
     parentCallbackLineData(data);
+    handleAnalytics();
   },[]);
   
   const getExention = (file) => {

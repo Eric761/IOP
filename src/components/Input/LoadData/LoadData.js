@@ -82,7 +82,7 @@ let data = [];
 const EXTENSIONS = ['xlsx', 'xls', 'csv'];
 let keys = ["bus","N","L"];
 
-const LoadData = ({isCustom,parentCallbackLoadData}) => {
+const LoadData = ({isCustom,parentCallbackLoadData,handleAnalytics}) => {
   const classes = useStyles();
   const [busNumber, setBusNumber] = useState(1);
   const [consumerNumber, setConsumerNumber] = useState("");
@@ -94,6 +94,8 @@ const LoadData = ({isCustom,parentCallbackLoadData}) => {
   useEffect(() => {
     data=[];
     parentCallbackLoadData(data);
+    handleAnalytics();
+    console.log(data);
   },[]);
 
   const getExention = (file) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Home from "./components/Home";
 import Input from "./components/Input";
@@ -10,6 +10,16 @@ import Analytics from "./components/Analytics/index";
 const App = () => {
   const [isValid, setIsValid] = useState(false);
   const [suggestionPage, setSuggestionPage] = useState(false);
+
+  useEffect(() => {
+    setIsValid(false);
+    setSuggestionPage(false);
+  },[]);
+
+  const handleAnalytics = () => {
+    setIsValid(false);
+  }
+
   const handleResult = () => {
     setIsValid(true);
     // setIsValid(!isValid);; -> If try to navigate from Analytics to Result to Input... Then, Onclicking calculate button, it will render homepage..
@@ -32,6 +42,7 @@ const App = () => {
                 title="Custom-Input"
                 isCustom={true}
                 handleResult={handleResult}
+                handleAnalytics={handleAnalytics}
               />
             )}
           />
@@ -43,6 +54,7 @@ const App = () => {
                 title="Manual-Input"
                 isCustom={false}
                 handleResult={handleResult}
+                handleAnalytics={handleAnalytics}
               />
             )}
           />

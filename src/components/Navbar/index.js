@@ -58,7 +58,7 @@ const Navbar = ({ toggle,enableAnalytics }) => {
             <NavItems>
               {!enableAnalytics ? (
                 <DarkTooltip title="Please fill the input values!" arrow>
-                  <NavLinks to="/" disable={true}>
+                  <NavLinks to="#" disable={true}>
                     Analytics
                   </NavLinks>
                 </DarkTooltip>
