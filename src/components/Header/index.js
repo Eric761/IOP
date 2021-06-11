@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../Sidebar";
 import Navbar from "../Navbar";
 
-const Header = () => {
+const Header = ({enableAnalytics}) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -10,8 +10,8 @@ const Header = () => {
 
   return (
     <>
-      <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Navbar toggle={toggle} />
+      <Sidebar isOpen={isOpen} toggle={toggle} enableAnalytics={enableAnalytics}/>
+      <Navbar toggle={toggle} enableAnalytics={enableAnalytics} />
     </>
   );
 };

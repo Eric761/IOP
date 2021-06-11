@@ -27,8 +27,7 @@ const DarkTooltip = withStyles((theme) => ({
     }
 }))(Tooltip);
 
-const Navbar = ({ toggle }) => {
-  const [show, setShow] = useState(true);
+const Navbar = ({ toggle,enableAnalytics }) => {
   const [open,setOpen] = useState(false);
   const handleDropdown = () => {
       setOpen(!open);
@@ -57,14 +56,14 @@ const Navbar = ({ toggle }) => {
               <NavLinks to="/">About</NavLinks>
             </NavItems>
             <NavItems>
-              {show ? (
+              {!enableAnalytics ? (
                 <DarkTooltip title="Please fill the input values!" arrow>
                   <NavLinks to="/" disable={true}>
                     Analytics
                   </NavLinks>
                 </DarkTooltip>
               ) : (
-                <NavLinks to="/">Analytics</NavLinks>
+                <NavLinks to="/analytics">Analytics</NavLinks>
               )}
             </NavItems>
           </NavMenu>

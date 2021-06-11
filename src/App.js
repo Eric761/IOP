@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useState} from 'react';
 import {BrowserRouter,Switch,Route, Redirect} from "react-router-dom";
 import Home from './components/Home';
 import Input from './components/Input';
@@ -6,6 +6,7 @@ import Result from './components/Result';
 import Header from './components/Header';
 import SuggestionPage from './components/Suggestion';
 import Graph from './components/Result/Graph';
+import Analytics from './components/Analytics/index';
 
 const App = () => {
   const [isValid,setIsValid] = useState(false);
@@ -19,7 +20,7 @@ const App = () => {
   return (
     <>
     <BrowserRouter>
-      <Header />
+      <Header enableAnalytics={isValid} />
       <Switch>
         <Route exact path="/" render={() => <Home />} />
         <Route exact path="/custom-input" render={() => <Input title="Custom-Input" isCustom={true} handleResult={handleResult} />} />
@@ -31,6 +32,9 @@ const App = () => {
           {suggestionPage ? <SuggestionPage /> : <Redirect to="/" />}
         </Route>
         <Route exact path="/graph" component={Graph} />
+        <Route exact path="/analytics">
+          {isValid ? <Analytics /> : <Redirect to="/" />}
+        </Route>
       </Switch>
     </BrowserRouter>
     </>
