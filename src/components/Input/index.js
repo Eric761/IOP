@@ -11,7 +11,7 @@ const Input = ({ title, isCustom, handleResult }) => {
   const [flag, setFlag] = useState(false);
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  });
 
   // Passing Data from Child to Parent
   const handleCallbackLoadData = (childData) => {

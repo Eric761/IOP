@@ -21,8 +21,8 @@ margin-bottom: 5vh;
 `;
 
 export const StyledPaper = styled(Paper)`
-height: 75vh;
-width: 60vw;
+height: 80vh;
+width: 70vw;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -41,7 +41,7 @@ export const ContentBtn = styled.div`
     height: 50px;
     font-weight: 900;
     background-color: #1f1f1f;
-    color: #a5a5a5;
+    color: #00fdff;
     transition: background-color 0.35s, color 0.35s;
     text-decoration: none;
     border-radius: 30px;

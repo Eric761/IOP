@@ -28,8 +28,8 @@ const BarChart = ({ xData, yData1, yData2, label1, label2, text }) => {
         options={{
           title: {
             display: true,
+            fontColor: 'white',
             text: text,
-            fontSize: 2,
           },
           legend: {
             display: true,
