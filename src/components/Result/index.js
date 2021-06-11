@@ -126,7 +126,7 @@ const Result = ({ handleSuggestion }) => {
         <Title>
           <Left>RESULT</Left>
           <ContentBtnRight>
-            <Link to="/graph" onClick={handleSuggestion}>
+            <Link to="/suggestion" onClick={handleSuggestion}>
               Suggestion
             </Link>
           </ContentBtnRight>

@@ -5,7 +5,6 @@ import Input from './components/Input';
 import Result from './components/Result';
 import Header from './components/Header';
 import SuggestionPage from './components/Suggestion';
-import Graph from './components/Result/Graph';
 import Analytics from './components/Analytics/index';
 
 const App = () => {
@@ -31,7 +30,6 @@ const App = () => {
         <Route exact path="/suggestion">
           {suggestionPage ? <SuggestionPage /> : <Redirect to="/" />}
         </Route>
-        <Route exact path="/graph" component={Graph} />
         <Route exact path="/analytics">
           {isValid ? <Analytics /> : <Redirect to="/" />}
         </Route>
