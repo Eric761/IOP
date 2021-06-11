@@ -1,23 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { readExcel, calculate_indices } from "./CalculateData/helperFn";
 import { loadData, lineData } from "../Input";
-import Paper from "@material-ui/core/Paper";
-import { Container,Title,Heading1,Heading2 } from "./ResultElements";
+import {
+  Container,
+  Title,
+  Left,
+  Heading1,
+  Heading2,
+  ContentBtnRight,
+  ContentBtnLeft,
+  ValueContainer,
+  UnitContainer,
+  StyledGrid1,
+  StyledGrid2,
+} from "./ResultElements";
 import BugReportIcon from "@material-ui/icons/BugReport";
 import Button from "@material-ui/core/Button";
-import "./helper.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
+import { Link } from "react-router-dom";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import NodalAnalysis from "./NodalAnalysis/index";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    // maxWidth: 310,
-    // transition: "transform 0.15s ease-in-out",
+    transition: "transform 0.15s ease-in-out",
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   bullet: {
     display: "inline-block",
@@ -30,47 +50,111 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-//   cardHovered: {
-//     transform: "scale3d(1.05, 1.05, 1)",
-//   },
+  cardHovered: {
+    transform: "scale3d(1.05, 1.05, 1)",
+  },
 });
 
-const Result = () => {
+const Result = ({ handleSuggestion }) => {
   const classes = useStyles();
+  const [state, setState] = useState({
+    raised1: false,
+    raised2: false,
+    raised3: false,
+    raised4: false,
+    raised5: false,
+    raised6: false,
+    raised7: false,
+    shadow: 1,
+  });
+  const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   console.log(loadData, lineData);
-  let tempObj = readExcel(loadData, lineData);
-  const { bus, link, N, La, addInfo } = tempObj;
+  const { bus, link, N, La, addInfo } = readExcel(loadData, lineData);
   let ans = calculate_indices(bus, link, N, La, addInfo);
   console.log(ans);
+
   useEffect(() => {
-      window.scrollTo(0,0);
-  },[]);
-//   const [state, setState] = useState({
-//     raised: false,
-//     shadow: 1,
-//   });
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const customerRows = [
-    { id: 1, title: "SAIFI", value: ans[0].toFixed(5),unit: "interupption / customer-yr" },
-    { id: 2, title: "SAIDI", value: ans[1].toFixed(5),unit: "hr / customer-yr" },
-    { id: 3, title: "CAIDI", value: ans[2].toFixed(5),unit: "hr / customer-interupption" },
-    { id: 4, title: "ASAI", value: ans[5].toFixed(5),unit: "" },
-    { id: 5, title: "ASUI", value: ans[6].toFixed(5),unit: "" },
+    {
+      id: 1,
+      title: "SAIFI",
+      value: ans[0].toFixed(5),
+      unit: "interupption / customer-yr",
+    },
+    {
+      id: 2,
+      title: "SAIDI",
+      value: ans[1].toFixed(5),
+      unit: "hr / customer-yr",
+    },
+    {
+      id: 3,
+      title: "CAIDI",
+      value: ans[2].toFixed(5),
+      unit: "hr / customer-interupption",
+    },
+    { id: 4, title: "ASAI", value: ans[5].toFixed(5), unit: "" },
+    { id: 5, title: "ASUI", value: ans[6].toFixed(5), unit: "" },
   ];
   const systemRows = [
-    { id: 1, title: "TENS", value: ans[3].toFixed(5),unit: "kWH / yr" },
-    { id: 2, title: "AENS", value: ans[4].toFixed(5),unit: "kWH / customer-yr" },
+    { id: 6, title: "TENS", value: ans[3].toFixed(5), unit: "kWh / yr" },
+    {
+      id: 7,
+      title: "AENS",
+      value: ans[4].toFixed(5),
+      unit: "kWh / customer-yr",
+    },
   ];
 
   return (
     <>
       <Container>
         <Title>
-            RESULT
+          <Left>RESULT</Left>
+          <ContentBtnRight>
+            <Link to="/graph" onClick={handleSuggestion}>
+              Suggestion
+            </Link>
+          </ContentBtnRight>
+          <ContentBtnLeft>
+            <Link to="#" onClick={handleClickOpen}>
+              Nodal Analysis
+            </Link>
+          </ContentBtnLeft>
         </Title>
-        <Heading1>
-            Customer Oriented Reliability Indices
-        </Heading1>
-        <Grid container spacing={4} className="grid-1">
+        <Dialog
+          fullScreen={fullScreen}
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <DialogTitle id="responsive-dialog-title" style={{textAlign:"center"}}>
+            Nodal Analysis
+          </DialogTitle>
+          <DialogContent>
+            <NodalAnalysis lineData={lineData} />
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={handleClose} style={{color: "black",fontSize: "18px",fontWeight: "800"}}>
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Heading1>Customer Oriented Reliability Indices</Heading1>
+        <StyledGrid1 container spacing={4}>
           {customerRows.map((item) => {
             return (
               <Grid item spacing={3} xs={12} sm={6} md={4}>
@@ -78,12 +162,26 @@ const Result = () => {
                   className={classes.root}
                   variant="outlined"
                   key={item.id}
-                  style={{backgroundColor: "rgba(26,26,26,1)",zIndex: "999"}}
-                //   classes={{ root: state.raised ? classes.cardHovered : "" }}
-                //   onMouseOver={() => setState({ raised: true, shadow: 3 })}
-                //   onMouseOut={() => setState({ raised: false, shadow: 1 })}
-                //   raised={state.raised}
-                //   zdepth={state.shadow}
+                  style={{ backgroundColor: "rgba(26,26,26,1)", zIndex: "999" }}
+                  classes={{
+                    root: state[`raised${item.id}`] ? classes.cardHovered : "",
+                  }}
+                  onMouseOver={() =>
+                    setState({
+                      ...state,
+                      [`raised${item.id}`]: true,
+                      shadow: 3,
+                    })
+                  }
+                  onMouseOut={() =>
+                    setState({
+                      ...state,
+                      [`raised${item.id}`]: false,
+                      shadow: 1,
+                    })
+                  }
+                  raised={state[`raised${item.id}`]}
+                  zdepth={state.shadow}
                 >
                   <CardContent>
                     <Grid container spacing={2}>
@@ -92,7 +190,7 @@ const Result = () => {
                           style={{
                             height: "15vh",
                             width: "18vh",
-                            backgroundColor: "rgb(255 255 255)",
+                            backgroundColor: "#dfe4e0",
                           }}
                         >
                           <span
@@ -117,25 +215,8 @@ const Result = () => {
                           alignItems: "center",
                         }}
                       >
-                        <div
-                          style={{
-                            fontWeight: "700",
-                            fontSize: "25px",
-                            color: "rgba(255 255 255)",
-                          }}
-                        >
-                          {item.value}
-                        </div>
-                        <div
-                          style={{
-                            fontWeight: "700",
-                            fontSize: "16px",
-                            color: "rgba(255 255 255)",
-                            textAlign: "center",
-                          }}
-                        >
-                          {item.unit}
-                        </div>
+                        <ValueContainer>{item.value}</ValueContainer>
+                        <UnitContainer>{item.unit}</UnitContainer>
                       </Grid>
                     </Grid>
                   </CardContent>
@@ -146,9 +227,16 @@ const Result = () => {
                       alignItems: "center",
                     }}
                   >
-                    <Button size="large" startIcon={<BugReportIcon  style={{
-                          color: "rgba(255 255 255)",
-                        }}/>}>
+                    <Button
+                      size="large"
+                      startIcon={
+                        <BugReportIcon
+                          style={{
+                            color: "rgba(255 255 255)",
+                          }}
+                        />
+                      }
+                    >
                       <span
                         style={{
                           fontWeight: "600",
@@ -164,11 +252,10 @@ const Result = () => {
               </Grid>
             );
           })}
-        </Grid>
-        <Heading2>
-            Energy Oriented Reliability Indices
-        </Heading2>
-        <Grid container spacing={4} className="grid-2">
+        </StyledGrid1>
+        <Heading2>Energy Oriented Reliability Indices</Heading2>
+        <StyledGrid2 container spacing={4}>
+          {/* Added backgroundColor for removing white background from bottom */}
           {systemRows.map((item) => {
             return (
               <Grid item spacing={3} xs={12} sm={6} md={6}>
@@ -176,21 +263,35 @@ const Result = () => {
                   className={classes.root}
                   variant="outlined"
                   key={item.id}
-                  style={{backgroundColor: "rgba(26,26,26,1)",zIndex: "999"}}
-                //   classes={{ root: state.raised ? classes.cardHovered : "" }}
-                //   onMouseOver={() => setState({ raised: true, shadow: 3 })}
-                //   onMouseOut={() => setState({ raised: false, shadow: 1 })}
-                //   raised={state.raised}
-                //   zdepth={state.shadow}
+                  style={{ backgroundColor: "rgba(26,26,26,1)", zIndex: "999" }}
+                  classes={{
+                    root: state[`raised${item.id}`] ? classes.cardHovered : "",
+                  }}
+                  onMouseOver={() =>
+                    setState({
+                      ...state,
+                      [`raised${item.id}`]: true,
+                      shadow: 3,
+                    })
+                  }
+                  onMouseOut={() =>
+                    setState({
+                      ...state,
+                      [`raised${item.id}`]: false,
+                      shadow: 1,
+                    })
+                  }
+                  raised={state[`raised${item.id}`]}
+                  zdepth={state.shadow}
                 >
                   <CardContent>
                     <Grid container spacing={2}>
                       <Grid item xs={6} md={6}>
                         <Avatar
-                         style={{
+                          style={{
                             height: "15vh",
                             width: "18vh",
-                            backgroundColor: "rgb(255 255 255)",
+                            backgroundColor: "#dfe4e0",
                           }}
                         >
                           <span
@@ -215,25 +316,8 @@ const Result = () => {
                           flexDirection: "column",
                         }}
                       >
-                       <div
-                          style={{
-                            fontWeight: "700",
-                            fontSize: "25px",
-                            color: "rgba(255 255 255)",
-                          }}
-                        >
-                          {item.value}
-                        </div>
-                        <div
-                          style={{
-                            fontWeight: "700",
-                            fontSize: "16px",
-                            color: "rgba(255 255 255)",
-                            textAlign: "center",
-                          }}
-                        >
-                          {item.unit}
-                        </div>
+                        <ValueContainer>{item.value}</ValueContainer>
+                        <UnitContainer>{item.unit}</UnitContainer>
                       </Grid>
                     </Grid>
                   </CardContent>
@@ -244,9 +328,16 @@ const Result = () => {
                       alignItems: "center",
                     }}
                   >
-                    <Button size="large" startIcon={<BugReportIcon  style={{
-                          color: "rgba(255 255 255)",
-                        }}/>}>
+                    <Button
+                      size="large"
+                      startIcon={
+                        <BugReportIcon
+                          style={{
+                            color: "rgba(255 255 255)",
+                          }}
+                        />
+                      }
+                    >
                       <span
                         style={{
                           fontWeight: "600",
@@ -262,7 +353,7 @@ const Result = () => {
               </Grid>
             );
           })}
-        </Grid>
+        </StyledGrid2>
       </Container>
     </>
   );

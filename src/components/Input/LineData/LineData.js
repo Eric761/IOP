@@ -385,9 +385,9 @@ const LineData = ({isCustom,parentCallbackLineData}) => {
       </Dialog>
       {/* Table Header */}
       <Grid container direction="row" justify="center" alignItems="center">
-        <TableContainer component={Paper} className={classes.root}>
+        <TableContainer component={Paper} className={classes.root} style={{backgroundColor: "#e1e1e1"}}>
           <Typography
-            style={{ margin: 10,display: "flex",alignItems:"center",justifyContent:"center",color:"black",fontFamily: "'Nunito', sans-serif",fontWeight: "900" }}
+            style={{ margin: "14px",display: "flex",alignItems:"center",justifyContent:"center",color:"black",fontFamily: "'Nunito', sans-serif",fontWeight: "900" }}
             variant="h4"
             color="primary"
             component="h2"

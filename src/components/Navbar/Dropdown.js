@@ -27,7 +27,7 @@ const DropdownMenu = ({handleDropdown}) => {
                 rightIcon={<FaChevronCircleRight className="icon-color"/>}
                 url="/custom-input"
             >
-            Custom Input
+            Upload File
             </DropdownItem>
             <DropdownItem
                 rightIcon={<FaChevronCircleRight className="icon-color"/>}

@@ -4,9 +4,6 @@ export const calculateLoadValues = (b, adj, para, obj) => {
     obj.curro = obj.curro * obj.currf + para.addInfo[b].f * para.addInfo[b].o;
     obj.currf += para.addInfo[b].f;
     obj.curro /= obj.currf;
-    // var refPass={currf,curro};
-    // if(adj[b].length===0)
-    // para.allPath.push(para.path);
     adj[b].map((pnt) => {
         // console.log(pnt);
         if (para.vis[pnt] !== 1) {
@@ -20,9 +17,6 @@ export const calculateLoadValues = (b, adj, para, obj) => {
                     calculateLoadValues(pnt, adj, para, obj);
                 }
         }
-        // elses{
-        // para.allPath.push(para.path);
-        // }
     });
     para.l[b] = obj.currf;
     para.r[b] = obj.curro;

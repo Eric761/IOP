@@ -1,130 +1,165 @@
-import { readExcel,calculate_indices } from './helperFn';
+import { readExcel, calculate_indices } from "./helperFn";
 
-export const run_diagnosis_with_failureRates = (loadData, lineData, Indice_num) => {  
-    //name of xlfile, name/accordingly_no. of indices to be reduced
+export const run_diagnosis_with_failureRates = (
+  loadData,
+  lineData,
+  Indice_num
+) => {
+  //name of xlfile, name/accordingly_no. of indices to be reduced
 
-    const { bus, link, N, La, addInfo } = readExcel(loadData,lineData);
+  const { bus, link, N, La, addInfo } = readExcel(loadData, lineData);
+  console.log(bus);
 
-    const initialList = calculate_indices(bus, link, N, La, addInfo);
+  const initialList = calculate_indices(bus, link, N, La, addInfo);
 
-    saifi = [], saidi = [], caidi = [], tens = [], aens = [], asai = [], asui = []
-    index_list = [saifi, saidi, caidi, tens, aens, asai, asui]
+  let saifi = [];
+  let saidi = [];
+  let caidi = [];
+  let tens = [];
+  let aens = [];
+  let asai = [];
+  let asui = [];
+  let index_list = [saifi, saidi, caidi, tens, aens, asai, asui];
 
-    for (let i = 0; i < bus; i++) {
+  for (let i = 0; i < bus; i++) {
+    if (addInfo[i]) {
+      let temp = addInfo[i].f;
+      addInfo[i].f *= 0.9; // 10 % decrease
 
-        let temp = addInfo[i].f
-        addInfo[i].f *= 0.9          // 10 % decrease
+      let List = calculate_indices(bus, link, N, La, addInfo);
 
-        let List = calculate_indices(bus, link, N, La, addInfo)
+      for (let j = 0; j < 7; j++) index_list[j].push(List[j]);
 
-        for (let j = 0; j < 7; j++)    index_list[j].push(List[j])
-
-        addInfo[i].f = temp;
+      addInfo[i].f = temp;
     }
+  }
 
-    let minvalue = 10e8, index = 0;
-    for (let i = 0; i < bus; i++) {
-        if (index_list[Indice_num][i] < minvalue) {
-            minvalue = index_list[Indice_num][i]
-            index = i
-        }
+  let minvalue = 10e8,
+    index = 0;
+  console.log(bus);
+  for (let i = 0; i < bus; i++) {
+    console.log(1);
+    if (index_list[Indice_num][i] < minvalue) {
+      console.log(2);
+      minvalue = index_list[Indice_num][i];
+      index = i;
     }
-    console.log(index);
-    // index -> At which bus by reducing 10% failure rate, gives min value of initialList[Indice_num] ?
-
-    if (minvalue <= 0.99 * initialList[Indice_num]) {
-        const ansIndices = []
-        for (let i = 0; i < 7; i++) ansIndices.push(index_list[i][index])
-        return {
-            index,
-            ansIndices
-        }
-    }
-    else return "Optimal Condition"
+  }
+  console.log(index);
+  // index -> At which bus by reducing 10% failure rate, gives min value of initialList[Indice_num] ?
+  if (minvalue <= 0.99 * initialList[Indice_num]) {
+    const ansIndices = [];
+    for (let i = 0; i < 7; i++) ansIndices.push(index_list[i][index]);
+    return {
+      index,
+      ansIndices,
+    };
+  } else return { index: bus - 1, ansIndices: initialList };
 };
 
-export const run_diagnosis_with_outageTime = (loadData, lineData, Indice_num) => {  
-    //name of xlfile, name/accordingly_no. of indices to be reduced
+export const run_diagnosis_with_outageTime = (
+  loadData,
+  lineData,
+  Indice_num
+) => {
+  //name of xlfile, name/accordingly_no. of indices to be reduced
 
-    const { bus, link, N, La, addInfo } = readExcel(loadData,lineData);
+  const { bus, link, N, La, addInfo } = readExcel(loadData, lineData);
 
-    const initialList = calculate_indices(bus, link, N, La, addInfo)
+  const initialList = calculate_indices(bus, link, N, La, addInfo);
 
-    saifi = [], saidi = [], caidi = [], tens = [], aens = [], asai = [], asui = []
-    index_list = [saifi, saidi, caidi, tens, aens, asai, asui]
+  let saifi = [];
+  let saidi = [];
+  let caidi = [];
+  let tens = [];
+  let aens = [];
+  let asai = [];
+  let asui = [];
+  let index_list = [saifi, saidi, caidi, tens, aens, asai, asui];
 
-    for (let i = 0; i < bus; i++) {
+  for (let i = 0; i < bus; i++) {
+    if (addInfo[i]) {
+      let temp = addInfo[i].o;
+      addInfo[i].o *= 0.9; // 10 % decrease
 
-        let temp = addInfo[i].o
-        addInfo[i].o *= 0.9          // 10 % decrease
+      let List = calculate_indices(bus, link, N, La, addInfo);
 
-        let List = calculate_indices(bus, link, N, La, addInfo)
+      for (let j = 0; j < 7; j++) index_list[j].push(List[j]);
 
-        for (let j = 0; j < 7; j++)    index_list[j].push(List(j))
-
-        addInfo[i].o = temp
+      addInfo[i].o = temp;
     }
+  }
 
-    let minvalue = 10e8, index = 0
-    for (let i = 0; i < bus; i++) {
-        if (index_list[Indice_num][i] < minvalue) {
-            minvalue = index_list[Indice_num][i]
-            index = i
-        }
+  let minvalue = 10e8,
+    index = 0;
+  for (let i = 0; i < bus; i++) {
+    if (index_list[Indice_num][i] < minvalue) {
+      minvalue = index_list[Indice_num][i];
+      index = i;
     }
+  }
 
-    if (minvalue <= 0.99 * initialList[Indice_num]) {
-        const ansIndices = []
-        for (let i = 0; i < 7; i++) ansIndices.push(index_list[i][index])
+  if (minvalue <= 0.99 * initialList[Indice_num]) {
+    const ansIndices = [];
+    for (let i = 0; i < 7; i++) ansIndices.push(index_list[i][index]);
 
-        return {
-            index,
-            ansIndices
-        }
-    }
-    else return "Optimal Condition"
+    return {
+      index,
+      ansIndices,
+    };
+  } else return { index: bus - 1, ansIndices: initialList };
 };
 
-export const run_diagnosis_with_circuitBreaker = (loadData, lineData, Indice_num) => {  
-    //name of xlfile, name/accordingly_no. of indices to be reduced
+export const run_diagnosis_with_circuitBreaker = (
+  loadData,
+  lineData,
+  Indice_num
+) => {
+  //name of xlfile, name/accordingly_no. of indices to be reduced
 
-    const { bus, link, N, La, addInfo } = readExcel(loadData,lineData);
+  const { bus, link, N, La, addInfo } = readExcel(loadData, lineData);
 
-    const initialList = calculate_indices(bus, link, N, La, addInfo)
+  const initialList = calculate_indices(bus, link, N, La, addInfo);
 
-    saifi = [], saidi = [], caidi = [], tens = [], aens = [], asai = [], asui = []
-    index_list = [saifi, saidi, caidi, tens, aens, asai, asui]
+  let saifi = [];
+  let saidi = [];
+  let caidi = [];
+  let tens = [];
+  let aens = [];
+  let asai = [];
+  let asui = [];
+  let index_list = [saifi, saidi, caidi, tens, aens, asai, asui];
 
-    for (let i = 0; i < bus; i++) {
+  for (let i = 0; i < bus; i++) {
+    if (addInfo[i]) {
+      if (addInfo[i].cb === 0) {
+        addInfo[i].cb = 1; //  Added a Cbreaker
 
-        if (addInfo[i].cb === 0) {
+        let List = calculate_indices(bus, link, N, La, addInfo);
 
-            addInfo[i].cb = 1          //  Added a Cbreaker
+        for (let j = 0; j < 7; j++) index_list[j].push(List[j]);
 
-            let List = calculate_indices(bus, link, N, La, addInfo)
-
-            for (let j = 0; j < 7; j++)    index_list[j].push(List(j))
-
-            addInfo[i].cb = 0
-        }
+        addInfo[i].cb = 0;
+      }
     }
+  }
 
-    let minvalue = 10e8, index = 0
-    for (let i = 0; i < bus; i++) {
-        if (index_list[Indice_num][i] < minvalue) {
-            minvalue = index_list[Indice_num][i]
-            index = i
-        }
+  let minvalue = 10e8,
+    index = 0;
+  for (let i = 0; i < bus; i++) {
+    if (index_list[Indice_num][i] < minvalue) {
+      minvalue = index_list[Indice_num][i];
+      index = i;
     }
+  }
 
-    if (minvalue <= 0.99 * initialList[Indice_num]) {
-        const ansIndices = []
-        for (let i = 0; i < 7; i++) ansIndices.push(index_list[i][index])
+  if (minvalue <= 0.99 * initialList[Indice_num]) {
+    const ansIndices = [];
+    for (let i = 0; i < 7; i++) ansIndices.push(index_list[i][index]);
 
-        return {
-            index,
-            ansIndices
-        }
-    }
-    else return "Optimal Condition";
+    return {
+      index,
+      ansIndices,
+    };
+  } else return { index: bus - 1, ansIndices: initialList };
 };

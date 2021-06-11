@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import LoadData from "./LoadData/LoadData";
 import LineData from "./LineData/LineData";
 import { Link } from "react-router-dom";
-import { Container, ContentBtn } from "./InputElements";
+import { Container, Tables, ContentBtn } from "./InputElements";
 
 let loadData = [];
 let lineData = [];
@@ -28,7 +28,9 @@ const Input = ({ title, isCustom, handleResult }) => {
       alert("Fill the Line data");
     } else {
       setFlag(true);
-      alert("Data validated! Click calculation button to evaluate reliability indices");
+      alert(
+        "Data validated! Click calculation button to evaluate reliability indices"
+      );
     }
   };
 
@@ -38,20 +40,22 @@ const Input = ({ title, isCustom, handleResult }) => {
         <title>{title} | Reliability Indices Calculation </title>
       </Helmet>
       <Container>
-        <LoadData
-          isCustom={isCustom}
-          parentCallbackLoadData={handleCallbackLoadData}
-        />
-        <LineData
-          isCustom={isCustom}
-          parentCallbackLineData={handleCallbackLineData}
-        />
+        <Tables>
+          <LoadData
+            isCustom={isCustom}
+            parentCallbackLoadData={handleCallbackLoadData}
+          />
+          <LineData
+            isCustom={isCustom}
+            parentCallbackLineData={handleCallbackLineData}
+          />
+        </Tables>
         <ContentBtn>
           <Link
             to={flag ? "/result" : "#"}
             onClick={flag ? handleResult : handleClick}
           >
-            {flag ? "Calculate Reliability Indices" : "Validate Data" }
+            {flag ? "Calculate Reliability Indices" : "Validate Data"}
           </Link>
         </ContentBtn>
       </Container>
