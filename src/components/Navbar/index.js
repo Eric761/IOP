@@ -52,9 +52,9 @@ const Navbar = ({ toggle,enableAnalytics }) => {
               <NavLinkInput onClick={handleDropdown}>Input</NavLinkInput>
               {open && <DropdownMenu handleDropdown={handleDropdown} />}
             </NavItems>
-            <NavItems>
+            {/* <NavItems>
               <NavLinks to="/">About</NavLinks>
-            </NavItems>
+            </NavItems> */}
             <NavItems>
               {!enableAnalytics ? (
                 <DarkTooltip title="Please fill the input values!" arrow>

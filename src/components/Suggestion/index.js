@@ -68,7 +68,7 @@ const Suggestion = () => {
         }
       }
     }
-    arrCb.push({ y1Data: y1Data, y2Data: y2Data });
+    arrCb.push({ y1Data: y1Data, y2Data: y2Data, ind: cb[i].index});
   }
 
   for (let i = 0; i < 7; i++) {
@@ -83,7 +83,7 @@ const Suggestion = () => {
         }
       }
     }
-    arrFr.push({ y1Data: y1Data, y2Data: y2Data });
+    arrFr.push({ y1Data: y1Data, y2Data: y2Data, ind: fr[i].index});
   }
 
   for (let i = 0; i < 7; i++) {
@@ -98,7 +98,7 @@ const Suggestion = () => {
         }
       }
     }
-    arrOt.push({ y1Data: y1Data, y2Data: y2Data });
+    arrOt.push({ y1Data: y1Data, y2Data: y2Data, ind: ot[i].index});
   }
 
   console.log(arrFr, arrOt, arrCb);
@@ -142,6 +142,7 @@ const Suggestion = () => {
           },
         ],
       },
+      ind: item.ind,
     };
   });
 
@@ -185,6 +186,7 @@ const Suggestion = () => {
           },
         ],
       },
+      ind: item.ind,
     };
   });
 
@@ -228,6 +230,7 @@ const Suggestion = () => {
           },
         ],
       },
+      ind: item.ind,
     };
   });
   console.log(stateFr, stateOt, stateCb);
@@ -237,8 +240,8 @@ const Suggestion = () => {
       <Container>
         <Title>Changing Failure Rate</Title>
         {stateFr.map((obj) => {
-          let title1 = "Customer Oriented: " + obj.state1.datasets[1].label;
-          let title2 = "Energy Oriented: " + obj.state2.datasets[1].label;
+          let title1 = "Customer Oriented: " + obj.state1.datasets[1].label + ", At Bus: " + obj.ind;
+          let title2 = "Energy Oriented: " + obj.state2.datasets[1].label + ", At Bus: " + obj.ind;
           return (
             <Row>
               <DarkTooltip
@@ -301,8 +304,8 @@ const Suggestion = () => {
         })}
         <Title>Changing Outage Time</Title>
         {stateOt.map((obj) => {
-          let title1 = "Customer Oriented: " + obj.state1.datasets[1].label;
-          let title2 = "Energy Oriented: " + obj.state2.datasets[1].label;
+          let title1 = "Customer Oriented: " + obj.state1.datasets[1].label + ", At Bus: " + obj.ind;
+          let title2 = "Energy Oriented: " + obj.state2.datasets[1].label + ", At Bus: " + obj.ind;
           return (
             <Row>
               <DarkTooltip
@@ -365,8 +368,8 @@ const Suggestion = () => {
         })}
         <Title>Changing Circuit Breaker</Title>
         {stateCb.map((obj) => {
-          let title1 = "Customer Oriented: " + obj.state1.datasets[1].label;
-          let title2 = "Energy Oriented: " + obj.state2.datasets[1].label;
+          let title1 = "Customer Oriented: " + obj.state1.datasets[1].label + ", At Bus: " + obj.ind;
+          let title2 = "Energy Oriented: " + obj.state2.datasets[1].label + ", At Bus: " + obj.ind;
           return (
             <Row>
               <DarkTooltip
