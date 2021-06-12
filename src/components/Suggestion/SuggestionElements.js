@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Paper } from "@material-ui/core";
+import { MdVerticalAlignTop } from "react-icons/md";
 
 export const Container = styled.div`
   padding: 2px;
@@ -14,10 +15,7 @@ export const Row = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* position: relative;
-    left: ${({ left }) => (left ? "0" : "")};
-    right: ${({ left }) => (left ? "" : "0")}; */
-  margin-bottom: 5vh;
+  margin-bottom: 12vh;
 `;
 
 export const Title = styled.div`
@@ -37,11 +35,13 @@ export const StyledPaper = styled(Paper)`
   align-items: center;
   justify-content: center;
   padding: 12px;
+  cursor: pointer;
 `;
+
 
 export const ContentBtn = styled.div`
   margin-top: 4vh;
-  margin-bottom: 6vh;
+  margin-bottom: -3vh;
   display: flex;
   justify-content: center;
   z-index: 100;
@@ -51,7 +51,7 @@ export const ContentBtn = styled.div`
     height: 50px;
     font-weight: 900;
     background-color: #1f1f1f;
-    color: #a5a5a5;
+    color: #00fdff;
     transition: background-color 0.35s, color 0.35s;
     text-decoration: none;
     border-radius: 30px;
@@ -70,5 +70,20 @@ export const ContentBtn = styled.div`
     @media screen and (max-width: 720px) {
       padding: 15px 55px;
     }
+  }
+`;
+
+export const StyledMdVerticalAlignTop = styled(MdVerticalAlignTop)`
+  height: 13vh;
+  width: 6vw;
+  position: relative;
+  right: -40em;
+  bottom: 4em;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 50px;
+  &:hover{
+    background-color: black;
+    color: white;
   }
 `;

@@ -3,10 +3,34 @@ import { loadData, lineData } from "../Input";
 import { readExcel, calculate_indices } from "../Result/CalculateData/helperFn";
 import fn from "./calculation";
 import { Bar } from "react-chartjs-2";
-import { Container, StyledPaper, Row,Title,ContentBtn } from "./SuggestionElements";
+import {
+  Container,
+  StyledPaper,
+  Row,
+  Title,
+  ContentBtn,
+  StyledMdVerticalAlignTop,
+} from "./SuggestionElements";
 import { Link } from "react-router-dom";
+import Tooltip from "@material-ui/core/Tooltip";
+import { withStyles } from "@material-ui/core/styles";
+
+const DarkTooltip = withStyles((theme) => ({
+  tooltip: {
+    backgroundColor: "#131313",
+    color: "fff",
+    boxShadow: theme.shadows[1],
+    fontSize: 13,
+    fontFamily: "'Nunito', sans-serif",
+    fontWeight: "600",
+    padding: "9px",
+  },
+}))(Tooltip);
 
 const Suggestion = () => {
+  const handleScrollTop = () => {
+    window.scrollTo(0, 0);
+  };
   console.log(loadData, lineData);
   const { bus, link, N, La, addInfo } = readExcel(loadData, lineData);
   let ans = calculate_indices(bus, link, N, La, addInfo);
@@ -15,7 +39,7 @@ const Suggestion = () => {
 
   const x1Data = ["SAIFI", "SAIDI", "CAIDI", "ASAI", "ASUI"];
   const x2Data = ["TENS", "AENS"];
-  const name = ["SAIFI", "SAIDI", "CAIDI", "TENS", "AENS","ASAI", "ASUI"];
+  const name = ["SAIFI", "SAIDI", "CAIDI", "TENS", "AENS", "ASAI", "ASUI"];
   const y1Data = [];
   const y2Data = [];
   for (let i = 0; i < 7; i++) {
@@ -77,8 +101,8 @@ const Suggestion = () => {
     arrOt.push({ y1Data: y1Data, y2Data: y2Data });
   }
 
-  console.log(arrFr,arrOt,arrCb);
-  const stateFr = arrFr.map((item,key) => {
+  console.log(arrFr, arrOt, arrCb);
+  const stateFr = arrFr.map((item, key) => {
     return {
       state1: {
         labels: x1Data,
@@ -121,7 +145,7 @@ const Suggestion = () => {
     };
   });
 
-  const stateCb = arrCb.map((item,key) => {
+  const stateCb = arrCb.map((item, key) => {
     return {
       state1: {
         labels: x1Data,
@@ -164,7 +188,7 @@ const Suggestion = () => {
     };
   });
 
-  const stateOt = arrOt.map((item,key) => {
+  const stateOt = arrOt.map((item, key) => {
     return {
       state1: {
         labels: x1Data,
@@ -206,140 +230,209 @@ const Suggestion = () => {
       },
     };
   });
-  console.log(stateFr,stateOt,stateCb);
+  console.log(stateFr, stateOt, stateCb);
 
   return (
     <>
       <Container>
         <Title>Changing Failure Rate</Title>
         {stateFr.map((obj) => {
-        return (<Row>
-            <StyledPaper left={true} elevation={10} style={{ backgroundColor: "#1f1f1f",marginRight: "45px" }}>
-                <Bar
+          let title1 = "Customer Oriented: " + obj.state1.datasets[1].label;
+          let title2 = "Energy Oriented: " + obj.state2.datasets[1].label;
+          return (
+            <Row>
+              <DarkTooltip
+                title={title1}
+                interactive
+                arrow
+                placement="top-start"
+              >
+                <StyledPaper
+                  left={true}
+                  elevation={10}
+                  style={{ backgroundColor: "#1f1f1f", marginRight: "45px" }}
+                >
+                  <Bar
                     data={obj.state1}
                     options={{
-                    title: {
+                      title: {
                         display: true,
                         fontSize: 2,
-                    },
-                    legend: {
+                      },
+                      legend: {
                         display: true,
                         position: "right",
                         labels: {
-                        fontColor: "white",
-                        fontSize: 18,
+                          fontColor: "white",
+                          fontSize: 18,
                         },
-                    },
+                      },
                     }}
-                />
-            </StyledPaper>
-            <StyledPaper left={false} elevation={10} style={{ backgroundColor: "#1f1f1f" }}>
-                <Bar
+                  />
+                </StyledPaper>
+              </DarkTooltip>
+              <DarkTooltip title={title2} interactive arrow placement="top-end">
+                <StyledPaper
+                  left={false}
+                  elevation={10}
+                  style={{ backgroundColor: "#1f1f1f" }}
+                >
+                  <Bar
                     data={obj.state2}
                     options={{
-                    title: {
+                      title: {
                         display: true,
                         fontSize: 2,
-                    },
-                    legend: {
+                      },
+                      legend: {
                         display: true,
                         position: "right",
                         labels: {
-                        fontColor: "white",
-                        fontSize: 18,
+                          fontColor: "white",
+                          fontSize: 18,
                         },
-                    },
+                      },
                     }}
-                />
-            </StyledPaper>
-        </Row>)
+                  />
+                </StyledPaper>
+              </DarkTooltip>
+            </Row>
+          );
         })}
         <Title>Changing Outage Time</Title>
         {stateOt.map((obj) => {
-        return(<Row>
-            <StyledPaper left={true} elevation={10} style={{ backgroundColor: "#1f1f1f",marginRight: "45px" }}>
-                <Bar
+          let title1 = "Customer Oriented: " + obj.state1.datasets[1].label;
+          let title2 = "Energy Oriented: " + obj.state2.datasets[1].label;
+          return (
+            <Row>
+              <DarkTooltip
+                title={title1}
+                interactive
+                arrow
+                placement="top-start"
+              >
+                <StyledPaper
+                  left={true}
+                  elevation={10}
+                  style={{ backgroundColor: "#1f1f1f", marginRight: "45px" }}
+                >
+                  <Bar
                     data={obj.state1}
                     options={{
-                    title: {
+                      title: {
                         display: true,
                         fontSize: 2,
-                    },
-                    legend: {
+                      },
+                      legend: {
                         display: true,
                         position: "right",
                         labels: {
-                        fontColor: "white",
-                        fontSize: 18,
+                          fontColor: "white",
+                          fontSize: 18,
                         },
-                    },
+                      },
                     }}
-                />
-            </StyledPaper>
-            <StyledPaper left={false} elevation={10} style={{ backgroundColor: "#1f1f1f" }}>
-                <Bar
+                  />
+                </StyledPaper>
+              </DarkTooltip>
+              <DarkTooltip title={title2} interactive arrow placement="top-end">
+                <StyledPaper
+                  left={false}
+                  elevation={10}
+                  style={{ backgroundColor: "#1f1f1f" }}
+                >
+                  <Bar
                     data={obj.state2}
                     options={{
-                    title: {
+                      title: {
                         display: true,
                         fontSize: 2,
-                    },
-                    legend: {
+                      },
+                      legend: {
                         display: true,
                         position: "right",
                         labels: {
-                        fontColor: "white",
-                        fontSize: 18,
+                          fontColor: "white",
+                          fontSize: 18,
                         },
-                    },
+                      },
                     }}
-                />
-            </StyledPaper>
-        </Row>)
+                  />
+                </StyledPaper>
+              </DarkTooltip>
+            </Row>
+          );
         })}
         <Title>Changing Circuit Breaker</Title>
         {stateCb.map((obj) => {
-        return(<Row>
-            <StyledPaper left={true} elevation={10} style={{ backgroundColor: "#1f1f1f",marginRight: "45px" }}>
-                <Bar
+          let title1 = "Customer Oriented: " + obj.state1.datasets[1].label;
+          let title2 = "Energy Oriented: " + obj.state2.datasets[1].label;
+          return (
+            <Row>
+              <DarkTooltip
+                title={title1}
+                interactive
+                arrow
+                placement="top-start"
+              >
+                <StyledPaper
+                  left={true}
+                  elevation={10}
+                  style={{ backgroundColor: "#1f1f1f", marginRight: "45px" }}
+                >
+                  <Bar
                     data={obj.state1}
                     options={{
-                    title: {
+                      title: {
                         display: true,
                         fontSize: 2,
-                    },
-                    legend: {
+                      },
+                      legend: {
                         display: true,
                         position: "right",
                         labels: {
-                        fontColor: "white",
-                        fontSize: 18,
+                          fontColor: "white",
+                          fontSize: 18,
                         },
-                    },
+                      },
                     }}
-                />
-            </StyledPaper>
-            <StyledPaper left={false} elevation={10} style={{ backgroundColor: "#1f1f1f" }}>
-                <Bar
+                  />
+                </StyledPaper>
+              </DarkTooltip>
+              <DarkTooltip title={title2} interactive arrow placement="top-end">
+                <StyledPaper
+                  left={false}
+                  elevation={10}
+                  style={{ backgroundColor: "#1f1f1f" }}
+                >
+                  <Bar
                     data={obj.state2}
                     options={{
-                    title: {
+                      title: {
                         display: true,
                         fontSize: 2,
-                    },
-                    legend: {
+                      },
+                      legend: {
                         display: true,
                         position: "right",
                         labels: {
-                        fontColor: "white",
-                        fontSize: 18,
+                          fontColor: "white",
+                          fontSize: 18,
                         },
-                    },
+                      },
                     }}
-                />
-            </StyledPaper>
-        </Row>)
+                  />
+                </StyledPaper>
+              </DarkTooltip>
+            </Row>
+          );
         })}
+        <ContentBtn>
+          <Link to="/result">Back to result</Link>
+        </ContentBtn>
+        <DarkTooltip title="Click to go to top of the page" interactive arrow>
+          <StyledMdVerticalAlignTop onClick={handleScrollTop} />
+        </DarkTooltip>
       </Container>
     </>
   );
