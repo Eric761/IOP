@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  /* // Remove height -> (Don't know why white color randomly appears at bottom) */
+  /* Remove height -> (Don't know why white color randomly appears at bottom) */
   padding-top: 70px;
   background-color: #d3d4da;
   @media screen and (max-width: 1005px) {
@@ -111,7 +111,6 @@ export const Title = styled.h1`
 `;
 
 export const Heading = styled.h2`
-  /* max-width: 460px; */
   margin-bottom: 16px;
   font-size: 25px;
   line-height: 1;
@@ -121,7 +120,6 @@ export const Heading = styled.h2`
 `;
 
 export const Description = styled.p`
-  /* max-width: 450px; */
   margin-bottom: 35px;
   font-size: 20px;
   line-height: 22px;

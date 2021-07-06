@@ -16,21 +16,21 @@ import Tooltip from "@material-ui/core/Tooltip";
 import DropdownMenu from "./Dropdown";
 
 const DarkTooltip = withStyles((theme) => ({
-    tooltip: {
-      backgroundColor: "#131313",
-      color: "fff",
-      boxShadow: theme.shadows[1],
-      fontSize: 12,
-      fontFamily: "'Nunito', sans-serif",
-      fontWeight: "400",
-      padding: "8px"
-    }
+  tooltip: {
+    backgroundColor: "#131313",
+    color: "fff",
+    boxShadow: theme.shadows[1],
+    fontSize: 12,
+    fontFamily: "'Nunito', sans-serif",
+    fontWeight: "400",
+    padding: "8px",
+  },
 }))(Tooltip);
 
-const Navbar = ({ toggle,enableAnalytics }) => {
-  const [open,setOpen] = useState(false);
+const Navbar = ({ toggle, enableAnalytics }) => {
+  const [open, setOpen] = useState(false);
   const handleDropdown = () => {
-      setOpen(!open);
+    setOpen(!open);
   };
 
   return (
@@ -57,7 +57,7 @@ const Navbar = ({ toggle,enableAnalytics }) => {
             </NavItems> */}
             <NavItems>
               {!enableAnalytics ? (
-                <DarkTooltip title="Please fill the input values!" arrow>
+                <DarkTooltip title="Fill the load & line data !" arrow>
                   <NavLinks to="#" disable={true}>
                     Analytics
                   </NavLinks>
