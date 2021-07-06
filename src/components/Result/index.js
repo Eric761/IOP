@@ -31,7 +31,6 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 
-
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -142,14 +141,21 @@ const Result = ({ handleSuggestion }) => {
           onClose={handleClose}
           aria-labelledby="responsive-dialog-title"
         >
-          <DialogTitle id="responsive-dialog-title" style={{textAlign:"center"}}>
+          <DialogTitle
+            id="responsive-dialog-title"
+            style={{ textAlign: "center" }}
+          >
             Nodal Analysis
           </DialogTitle>
           <DialogContent>
             <NodalAnalysis lineData={lineData} />
           </DialogContent>
           <DialogActions>
-            <Button autoFocus onClick={handleClose} style={{color: "black",fontSize: "18px",fontWeight: "800"}}>
+            <Button
+              autoFocus
+              onClick={handleClose}
+              style={{ color: "black", fontSize: "18px", fontWeight: "800" }}
+            >
               Close
             </Button>
           </DialogActions>
@@ -191,7 +197,9 @@ const Result = ({ handleSuggestion }) => {
                           style={{
                             height: "15vh",
                             width: "18vh",
-                            backgroundColor: "#dfe4e0",
+                            // backgroundColor: "#dfe4e0",
+                            background:
+                              "linear-gradient(45deg, rgb(95 94 10), rgb(255 255 255))",
                           }}
                         >
                           <span
@@ -292,7 +300,9 @@ const Result = ({ handleSuggestion }) => {
                           style={{
                             height: "15vh",
                             width: "18vh",
-                            backgroundColor: "#dfe4e0",
+                            // backgroundColor: "#dfe4e0",
+                            background:
+                              "linear-gradient(45deg, rgb(95 94 10), rgb(255 255 255))",
                           }}
                         >
                           <span

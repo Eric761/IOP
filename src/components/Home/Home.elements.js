@@ -1,28 +1,44 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  // Remove height -> (Don't know why white color randomly appears at bottom) 
-  padding-top: 80px;
-  background-color: #dfe4e0;
-  height: 100vh;
+  /* // Remove height -> (Don't know why white color randomly appears at bottom) */
+  padding-top: 70px;
+  background-color: #d3d4da;
+  @media screen and (max-width: 1005px) {
+    padding-top: 60px;
+  }
+  @media screen and (max-width: 600px) {
+    padding-top: 50px;
+  }
+  @media screen and (max-width: 550px) {
+    padding-top: 30px;
+  }
 `;
 
 export const InfoRow = styled.div`
   display: flex;
   margin: 0 -15px -15px -15px;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   align-items: center;
-  /* margin-bottom: 15vh; */
 `;
 
 export const InfoCol = styled.div`
   margin-bottom: 15px;
+  padding-left: ${({ flag }) => (flag ? "55px" : "32px")};
   padding-right: 15px;
-  padding-left: 15px;
   flex: 1;
   max-width: 50%;
   flex-basis: 50%;
+  @media screen and (max-width: 1230px) {
+    padding-left: ${({ flag }) => (flag ? "25px" : "15px")};
+  }
+  @media screen and (max-width: 1140px) {
+    padding-left: ${({ flag }) => (flag ? "20px" : "12px")};
+  }
+  @media screen and (max-width: 1105px) {
+    padding-left: ${({ flag }) => (flag ? "15px" : "10px")};
+  }
   @media screen and (max-width: 1006px) {
     max-width: 100%;
     flex-basis: 100%;
@@ -34,14 +50,18 @@ export const InfoCol = styled.div`
 export const Content = styled.div`
   max-width: 540px;
   padding-top: 0;
-  padding-bottom: 60px;
+  padding-bottom: 2px;
   margin-right: auto;
   margin-left: auto;
   @media screen and (max-width: 1210px) {
     padding-left: 20px;
   }
   @media screen and (max-width: 960px) {
-    padding-bottom: 65px;
+    padding-bottom: 15px;
+  }
+  @media screen and (max-width: 600px) {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 `;
 
@@ -57,7 +77,28 @@ export const Img = styled.img`
   max-width: 100%;
   vertical-align: middle;
   display: inline-block;
-  /* max-height: 500px; */
+  width: 570px;
+  height: 570px;
+  @media screen and (max-width: 1300px) {
+    width: 550px;
+    height: 550px;
+  }
+  @media screen and (max-width: 1230px) {
+    width: 540px;
+    height: 540px;
+  }
+  @media screen and (max-width: 1140px) {
+    width: 530px;
+    height: 530px;
+  }
+  @media screen and (max-width: 600px) {
+    width: 500px;
+    height: 500px;
+  }
+  @media screen and (max-width: 550px) {
+    width: 450px;
+    height: 450px;
+  }
 `;
 
 export const Title = styled.h1`
